@@ -1,15 +1,22 @@
-##GESTOR DE TARAS 
+# GESTOR DE TARAS 
 - El desarrollo se hizo usando Spring boot 3.4.2 y Java 17
 
-#Modulos
+## Modulos
 - Tareas
 - Auth
 
-#BD MYSQL 
-- Para levantar el proyecto crear bd gestor_tareas
-  `CREATE DATABASE gestor_tareas`
 
+## Conexion sin Docker
 - En el archivo application.properties configura tu username y password de tu BD
+- Para levantar el proyecto crear bd gestor_tareas en Mysql
+    `CREATE DATABASE gestor_tareas`
+
+
+## Conexion con Docker
+- configurar tu username y password en el archivo "application-docker.properties"
+- ejecutar el siguiente comando `docker-compose up --build`
+
+
 
 
 #Nota : 

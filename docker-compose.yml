@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # Servicio para la base de datos MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: wilson1890
+      MYSQL_DATABASE: gestor_tareas
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - tareas-network
+
+  # Servicio para la aplicación Spring Boot
+  tareas-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tareas_api
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/gestor_tareas?serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: wilson1890
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    networks:
+      - tareas-network
+
+# Volumen para persistir datos de MySQL
+volumes:
+  mysql_data:
+
+# Red para conectar los servicios
+networks:
+  tareas-network:
+    driver: bridge
