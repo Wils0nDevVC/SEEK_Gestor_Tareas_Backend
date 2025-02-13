@@ -55,6 +55,7 @@ public class TareaService {
     // Método para convertir de Entidad a DTO
     private TareaDTO convertirA_DTO(Tarea tarea) {
         TareaDTO dto = new TareaDTO();
+        dto.setId(tarea.getId());
         dto.setTitulo(tarea.getTitulo());
         dto.setDescripcion(tarea.getDescripcion());
         dto.setEstado(TareaDTO.Estado.valueOf(tarea.getEstado().name()));
